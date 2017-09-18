@@ -1,11 +1,8 @@
-import requests
-import const
-import base64
 import time
+import requests
 from requests.auth import HTTPBasicAuth
-from exception import RHGException
-from question import *
-from payload import *
+from rhgmodel import *
+
 
 class RHGClient:
     def __init__(self, username, password):
@@ -24,11 +21,13 @@ class RHGClient:
             raise RHGException(r.text)
         try:
             qs = QuestionStatus()
-            qs.from_dict(r.json())
+            j = r.json()
+            if j.has_key("status"):
+                raise RHGException(j["msg"])
+            qs.from_dict(j)
             return qs
         except ValueError:
             raise RHGException(r.text)
-
 
     def submit_payload(self, payloadInfo):
         if not isinstance(payloadInfo, PayloadInfo):

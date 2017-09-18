@@ -39,7 +39,7 @@ class PayloadInfo:
 
     def add_payload(self, challengeId, payload):
         if not isinstance(payload, Payload):
-            raise ValueError("Mistype of payload, should be Paylooad.")
+            raise ValueError("Mistype of payload, should be Payload.")
         self.Payloads[challengeId] = payload
 
     def del_payload(self, challengeId):

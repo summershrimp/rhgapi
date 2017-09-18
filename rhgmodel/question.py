@@ -1,3 +1,7 @@
+import requests
+import os
+
+
 class Challenge:
     def __init__(self):
         self.ChallengeID = 0
@@ -8,6 +12,16 @@ class Challenge:
         self.MemoryWritePath = ""
         self.MemoryWriteContent = ""
         self.BinaryUrl = ""
+
+    def download(self, dest):
+        r = requests.get(self.BinaryUrl, stream=True, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36"})
+        p = os.path.realpath(dest)
+        with open(p, "wb") as f:
+            for chunk in r.iter_content(chunk_size=1024 * 512):
+                if chunk:
+                    f.write(chunk)
+        f.close()
+        return p
 
     def from_dict(self, m):
         for k in m:

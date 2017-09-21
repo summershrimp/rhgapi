@@ -9,19 +9,19 @@ class Payload:
         self.defense = ""
 
     def set_crash(self, binary):
-        self.Crash = base64.encodestring(binary)
+        self.Crash = base64.b64encode(binary)
 
     def set_eip(self, binary):
-        self.Eip = base64.encodestring(binary)
+        self.Eip = base64.b64encode(binary)
 
     def set_mem_write(self, binary):
-        self.Memwrite = base64.encodestring(binary)
+        self.Memwrite = base64.b64encode(binary)
 
     def set_mem_read(self, binary):
-        self.Memread = base64.encodestring(binary)
+        self.Memread = base64.b64encode(binary)
 
     def set_defense(self, binary):
-        self.defense = base64.encodestring(binary)
+        self.defense = base64.b64encode(binary)
 
     def to_map(self):
         ret = []

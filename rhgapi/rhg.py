@@ -1,7 +1,10 @@
 import time
 import requests
 from requests.auth import HTTPBasicAuth
-from rhgmodel import *
+
+from payload import *
+from question import *
+from exception import *
 
 
 class RHGClient:
